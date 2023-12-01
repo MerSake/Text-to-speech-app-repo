@@ -1,0 +1,24 @@
+{% extends 'base.html' %} {% block title %}Text2Speech converter{% endblock %} {% block content
+  %} 
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<div id="t2scon">
+  <div class="T2S-container">
+    <div class="T2S-sub-container">
+        <textarea name="Text" cols="155" rows="9"></textarea>
+        <audio controls>
+          <source src="C:\Users\ibrah\Desktop\videoplayback.m4a">
+        </audio>
+    </div>
+    <div class="T2S-sub-container">
+        <button>Convert</button>
+          <select name="languages" id="language-menu"> 
+              <option value="English">English</option> 
+              <option value="Russian">Russian</option> 
+              <option value="Deutsch">Deutsch</option> 
+              <option value="Spanish">Spanish</option> 
+          </select>
+    </div>
+  </div>
+</div>
+{% endblock %}
+  
