@@ -1,24 +1,33 @@
 {% extends 'base.html' %} {% block title %}Text2Speech converter{% endblock %} {% block content
   %} 
+<script>
+    window.addEventListener('load', function(){
+      document.getElementById('myAudio').play();
+    })
+</script>
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 <div id="t2scon">
+  <form method="POST">
   <div class="T2S-container">
     <div class="T2S-sub-container">
-        <textarea name="Text" cols="155" rows="9"></textarea>
-        <audio controls>
-          <source src="C:\Users\ibrah\Desktop\videoplayback.m4a">
-        </audio>
+        <textarea name="text_to_convert" cols="155" rows="9"></textarea>
+        <audio controls id="myAudio">
+          <source src="data:audio/mp3;base64,{{ audio_data }}" type="audio/mp3">
+        </audio>              
     </div>
     <div class="T2S-sub-container">
-        <button>Convert</button>
-          <select name="languages" id="language-menu"> 
+      
+       <button type="submit" >Convert</button> 
+          <!-- <select name="languages" id="language-menu"> 
               <option value="English">English</option> 
               <option value="Russian">Russian</option> 
               <option value="Deutsch">Deutsch</option> 
               <option value="Spanish">Spanish</option> 
-          </select>
+          </select> -->
     </div>
   </div>
+  </form>
 </div>
+
 {% endblock %}
   
