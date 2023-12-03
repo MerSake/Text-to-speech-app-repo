@@ -19,6 +19,22 @@ def home():
 def T2Sapp():
     if request.method == "POST":
         text_to_convert = request.form.get("text_to_convert")
+        lang = request.form.get("languages")
+        engine = "neural"
+        if lang == "English":
+            voiceid = "Joanna"
+        elif lang == "Russian":
+            voiceid = "Tatyana"
+            engine = "standard"
+        elif lang == "Spanish":
+            voiceid = "Lupe"
+        elif lang == "Deutsch":
+            voiceid = "Vicki"
+        elif lang == "Polish":
+            voiceid = "Ola"
+        elif lang == "Turkish":
+            voiceid = "Filiz"
+            engine = "standard"
         print(text_to_convert)
         if text_to_convert:
             env_path = os.path.join(os.path.dirname(__file__), "..")
@@ -33,10 +49,10 @@ def T2Sapp():
                 region_name="us-east-1",
             ).client("polly")
             response = polly_client.synthesize_speech(
-                VoiceId="Joanna",
+                VoiceId=voiceid,
                 OutputFormat="mp3",
                 Text=text_to_convert,
-                Engine="neural",
+                Engine=engine,
             )
 
             audio_data = response["AudioStream"].read()
